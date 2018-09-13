@@ -1,0 +1,31 @@
+import main.*
+import hechizos.*
+import artefactos.*
+import refuerzos.*
+import global.*
+
+test "se pregunta el nivel de hechiceria de rolando" {
+	assert.equals(56, rolando.nivelDeHechiceria())
+}
+test "se cambia el nombre del hechizo malefico y se pregunta el nivel de hechiceria de rolando" {
+	espectroMalefico.nombre("espectro superrecontramalefico muajajaja")
+	assert.equals(125, rolando.nivelDeHechiceria())
+}
+test "se asigna a rolando hechizoBasico como su preferido y se pregunta su nivel de hechiceria" {
+	rolando.hechizoPreferido(hechizoBasico)
+	assert.equals(35, rolando.nivelDeHechiceria())
+}
+test "ocurre un eclipse y se consulta el poder de hechizos de rolando" {
+	global.eclipse()
+	assert.equals(61, rolando.nivelDeHechiceria())
+}
+test "consulta si el espectro malefico es un hechizo poderoso" {
+	assert.that(espectroMalefico.hechizoPoderoso())
+}
+test "se renombra al espectro malefico como 'pepe' y se verifica que no es poderoso" {
+	espectroMalefico.nombre("pepe")
+	assert.that(!espectroMalefico.hechizoPoderoso())
+}
+test "verifica que el hechizo basico no es pderoso" {
+	assert.that(!hechizoBasico.hechizoPoderoso())
+}
