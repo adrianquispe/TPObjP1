@@ -1,6 +1,38 @@
+import main.*
+import artefactos.*
+import global.*
 
-test "testX" {
+test "Se eliminan los artefactos y se conoce la habilidad de lucha de Rolando" {
+	
+	rolando.quitarTodosLosArtefactos()
+	assert.equals(1, rolando.habilidadDeLucha())
+}
 
-	assert.that(true)
+test "Conocer la habilidad de lucha de Rolando con todos los artefactos" {
+	
+	assert.equals(13, rolando.habilidadDeLucha(rolando))
+}
 
+test "Cantidad de perlas 3 y conocer habilidad de lucha de Rolando con todos los artefactos" {
+	
+	collarDivino.modificarPerlas(3)
+	assert.equals(11, rolando.habilidadDeLucha(rolando))
+}
+
+test "Cambiar valor base de Rolando a 8 y conocer habilidad con todos los artefactos" {
+	
+	rolando.habilidadDeLuchaBase(8)
+	assert.equals(20, rolando.habilidadDeLucha(rolando))
+}
+
+test "Ocurre un eclipse y pregunta el valor de lucha de la mascara oculta" {
+	
+	global.eclipse()
+	assert.equals(5, mascaraOscura.luchaArtefacto(rolando))
+}
+
+test "Eliminar la mascara oscura y conocer la habilidad de lucha de Rolando" {
+	
+	rolando.quitarArtefacto(mascaraOscura)
+	assert.equals(9, rolando.habilidadDeLucha(rolando))
 }
