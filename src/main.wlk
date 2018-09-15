@@ -52,5 +52,8 @@ object rolando{
 	method estaCargado(){
 		return artefactos.size() >= 5
 	}
+	method quitarTodosLosArtefactos(){
+		artefactos = []
+	}
 }
 
