@@ -4,6 +4,8 @@ import artefactos.*
 import refuerzos.*
 import global.*
 
+describe "Hechiceria" {
+	
 test "se pregunta el nivel de hechiceria de rolando" {
 	assert.equals(56, rolando.nivelDeHechiceria())
 }
@@ -28,4 +30,6 @@ test "se renombra al espectro malefico como 'pepe' y se verifica que no es poder
 }
 test "verifica que el hechizo basico no es pderoso" {
 	assert.that(!hechizoBasico.hechizoPoderoso())
+}
+
 }
