@@ -15,6 +15,9 @@ object  espectroMalefico{
 	method nombre(nuevoNombre){
 		nombre = nuevoNombre
 	}
+	method beneficioRefuerzo(personaje){
+		return self.poder()
+	}
 }
 
 object hechizoBasico{
@@ -24,6 +27,9 @@ object hechizoBasico{
 	}
 	method hechizoPoderoso(){
 		return false
+	}
+	method beneficioRefuerzo(personaje){
+		return self.poder()
 	}
 }
 
