@@ -36,13 +36,15 @@ test "Habilidad de lucha de la armadura de Rolando si tiene una cota de malla de
 
 test "Habilidad de lucha de Rolando si tiene hechizo basico de refuerzo" {
 	
-	armadura.refuerzo(hechizoBasico)
+	hechizo.hechizoRefuerzo(hechizoBasico)
+	armadura.refuerzo(hechizo)
 	assert.equals(12,armadura.luchaArtefacto(rolando))
 }
 
 test "Habilidad de lucha de Rolando si tiene hechizo espectro de refuerzo" {
 	
-	armadura.refuerzo(espectroMalefico)
+	hechizo.hechizoRefuerzo(espectroMalefico)
+	armadura.refuerzo(hechizo)
 	assert.equals(19,armadura.luchaArtefacto(rolando))
 }
 
