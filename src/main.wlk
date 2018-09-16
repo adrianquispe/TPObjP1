@@ -7,7 +7,8 @@ object rolando{
 	var valorBase = 3
 	var hechizoPreferido = espectroMalefico
 	var habilidadDeLuchaBase = 1
-	var artefactos = []
+	var artefactos = [espadaDelDestino,collarDivino,mascaraOscura]
+	//var artefactos = [espadaDelDestino,collarDivino,mascaraOscura,armadura,espejo]
 	
 	// getters
 	method valorBase(){return valorBase}
