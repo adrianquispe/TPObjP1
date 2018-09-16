@@ -2,6 +2,8 @@ import main.*
 import artefactos.*
 import global.*
 
+describe "Lucha" {
+	
 test "Se eliminan los artefactos y se conoce la habilidad de lucha de Rolando" {
 	
 	rolando.quitarTodosLosArtefactos()
@@ -35,4 +37,6 @@ test "Eliminar la mascara oscura y conocer la habilidad de lucha de Rolando" {
 	
 	rolando.quitarArtefacto(mascaraOscura)
 	assert.equals(9, rolando.habilidadDeLucha(rolando))
+}
+
 }
