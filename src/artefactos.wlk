@@ -8,7 +8,7 @@ object espadaDelDestino{
 }
 
 object collarDivino{
-	var perlas = 5
+	var perlas
 	
 	method modificarPerlas(nuevasPerlas){
 		perlas = nuevasPerlas
