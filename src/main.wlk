@@ -32,8 +32,8 @@ object rolando{
 	method quitarArtefacto(artefactoAQuitar){
 		artefactos.remove(artefactoAQuitar)
 	}
-	method habilidadDeLuchaBase(nuevaHabilidad){
-		habilidadDeLuchaBase = nuevaHabilidad
+	method habilidadDeLuchaBase(nuevoValor){
+		habilidadDeLuchaBase = nuevoValor
 	}
 	method aumentarLucha(cantidad){
 		habilidadDeLuchaBase += cantidad
@@ -54,7 +54,7 @@ object rolando{
 		return artefactos.size() >= 5
 	}
 	method quitarTodosLosArtefactos(){
-		artefactos = []
+		artefactos.clear()
 	}
 }
 
