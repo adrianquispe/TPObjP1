@@ -3,38 +3,39 @@ import artefactos.*
 import global.*
 
 describe "Lucha" {
-	
-test "Se eliminan los artefactos y se conoce la habilidad de lucha de Rolando" {
-	
+	fixture {
+		collarDivino.modificarPerlas(5)
+		rolando.agregarArtefacto(espadaDelDestino)
+		rolando.agregarArtefacto(collarDivino)
+		rolando.agregarArtefacto(mascaraOscura)
+	}	
+
+test "Si Rolando no tiene artefactos, su habilidad de lucha es 1" {
 	rolando.quitarTodosLosArtefactos()
 	assert.equals(1, rolando.habilidadDeLucha())
 }
 
-test "Conocer la habilidad de lucha de Rolando con todos los artefactos" {
-	
+test "Con todos los artefactos, la habilidad de lucha de Rolando es 13" {
 	assert.equals(13, rolando.habilidadDeLucha(rolando))
 }
 
-test "Cantidad de perlas 3 y conocer habilidad de lucha de Rolando con todos los artefactos" {
-	
+test "Con un collar de tres perlas, la habilidad de lucha de Rolando es 11" {
 	collarDivino.modificarPerlas(3)
 	assert.equals(11, rolando.habilidadDeLucha(rolando))
 }
 
-test "Cambiar valor base de Rolando a 8 y conocer habilidad con todos los artefactos" {
+test "Con un valor base de 8, la habilidad para luchar es 20" {
 	
 	rolando.habilidadDeLuchaBase(8)
 	assert.equals(20, rolando.habilidadDeLucha(rolando))
 }
 
-test "Ocurre un eclipse y pregunta el valor de lucha de la mascara oculta" {
-	
+test "Si ocurre un eclipse, el valor de lucha de la máscara oscura es 5" {
 	global.eclipse()
 	assert.equals(5, mascaraOscura.luchaArtefacto(rolando))
 }
 
-test "Eliminar la mascara oscura y conocer la habilidad de lucha de Rolando" {
-	
+test "Sin la mascara oscura, la habilidad de lucha de Rolando es 9" {
 	rolando.quitarArtefacto(mascaraOscura)
 	assert.equals(9, rolando.habilidadDeLucha(rolando))
 }
