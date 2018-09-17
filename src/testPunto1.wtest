@@ -5,6 +5,11 @@ import refuerzos.*
 import global.*
 
 describe "Hechiceria" {
+
+	fixture {
+		espectroMalefico.nombre("espectro malefico")
+		rolando.hechizoPreferido(espectroMalefico)
+	}
 	
 test "se pregunta el nivel de hechiceria de rolando" {
 	assert.equals(56, rolando.nivelDeHechiceria())
