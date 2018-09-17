@@ -4,19 +4,30 @@ import global.*
 import refuerzos.*
 
 object rolando{
+
 	var valorBase = 3
-	var hechizoPreferido = espectroMalefico
+	var hechizoPreferido
 	var habilidadDeLuchaBase = 1
-	var artefactos = [espadaDelDestino,collarDivino,mascaraOscura]
-	//var artefactos = [espadaDelDestino,collarDivino,mascaraOscura,armadura,espejo]
+	var artefactos = []
 	
 	// getters
-	method valorBase(){return valorBase}
-	method hechizoPreferido(){return hechizoPreferido}
-	method habilidadDeLuchaBase(){return habilidadDeLuchaBase}
-	method artefactos(){return artefactos}
+	method valorBase(){
+	return valorBase
+	}
+	
+	method hechizoPreferido(){
+	return hechizoPreferido
+	}
+	
+	method habilidadDeLuchaBase(){
+	return habilidadDeLuchaBase
+	}
+	
+	method artefactos(){
+	return artefactos
+	}
+	
 	// fin getters
-
 	method nivelDeHechiceria (){
 		return valorBase * hechizoPreferido.poder() + global.fuerzaOscura()
 	}
