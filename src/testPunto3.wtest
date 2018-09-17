@@ -6,9 +6,20 @@ import hechizos.*
 
 describe "Lucha y hechiceria avanzada" {
 	
+	fixture {
+		espectroMalefico.nombre("espectro malefico")
+		rolando.hechizoPreferido(espectroMalefico)
+		collarDivino.modificarPerlas(5)
+		rolando.agregarArtefacto(espadaDelDestino)
+		rolando.agregarArtefacto(collarDivino)
+		rolando.agregarArtefacto(mascaraOscura)
+		rolando.agregarArtefacto(armadura)
+		rolando.agregarArtefacto(espejo)
+	}
+	
 test "Saber si Rolando esta cargado" {
 
-	assert.equals(true,rolando.estaCargado())
+	assert.that(rolando.estaCargado())
 }
 
 test "Sacar la armadura y preguntar si esta cargado" {
