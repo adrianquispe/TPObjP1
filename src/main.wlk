@@ -75,5 +75,8 @@ object rolando{
 	method quitarTodosLosArtefactos(){
 		artefactos.clear()
 	}
+	method tieneSoloEspejo(){
+		return artefactos.contains(espejo) && artefactos == [espejo]
+	}
 }
 

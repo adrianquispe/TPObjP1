@@ -47,7 +47,7 @@ object armadura{
 
 object espejo{
 	method luchaArtefacto(personaje){
-		if(self.tieneSoloEspejo(personaje)){
+		if(personaje.tieneSoloEspejo()){
 			return 0
 		}
 		else{
@@ -56,8 +56,5 @@ object espejo{
 			personaje.agregarArtefacto(self)
 			return puntosLuchaMejorArtefacto
 		}
-	}
-	method tieneSoloEspejo(personaje){
-		return personaje.artefactos().contains(self) and personaje.artefactos().size() == 1
 	}
 }
