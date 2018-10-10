@@ -1,5 +1,19 @@
 import global.*
 
+class Logo {
+	var nombre
+	
+	
+	constructor(nombreNuevo) {
+		nombre = nombreNuevo
+	}
+	method poder(){
+		return nombre.size()
+	}
+	method hechizoPoderso() {
+		return self.poder() > 15
+	}
+}
 object  espectroMalefico{
 	var nombre = "Espectro Malefico"
 	
