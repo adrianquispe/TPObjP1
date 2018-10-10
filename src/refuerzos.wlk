@@ -4,9 +4,13 @@ object ninguno{
 	}
 }
 
-object cotaDeMalla{
+class CotaDeMalla{
+	var valorRefuerzo = 1
+	method nuevoRefuerzo(valor){
+		valorRefuerzo = valor
+	}
 	method beneficioRefuerzo(personaje){
-		return 1
+		return valorRefuerzo
 	}
 }
 
