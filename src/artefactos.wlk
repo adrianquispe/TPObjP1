@@ -25,10 +25,12 @@ object collarDivino{
 }
 
 class Mascara{
+	var nombre
 	var indice
 	var property minimo = 4
 	
-	constructor(unIndice){
+	constructor(unNombre, unIndice){
+		nombre = unNombre
 		indice = unIndice
 	}
 	

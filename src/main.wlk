@@ -6,7 +6,7 @@ import refuerzos.*
 class Jugador{
 	var valorBase = 3
 	var property hechizoPreferido
-	var habilidadDeLuchaBase
+	var property habilidadDeLuchaBase
 	var artefactos
 	
 	constructor (unHechizoPref, unaHabLuchaBase, listaArtefactos){
@@ -17,7 +17,6 @@ class Jugador{
 	
 	// getters
 	method valorBase(){return valorBase}
-	method habilidadDeLuchaBase(){return habilidadDeLuchaBase}
 	method artefactos(){return artefactos}
 	// fin getters
 
@@ -32,9 +31,6 @@ class Jugador{
 	}
 	method quitarArtefacto(artefactoAQuitar){
 		artefactos.remove(artefactoAQuitar)
-	}
-	method habilidadDeLuchaBase(nuevaHabilidad){
-		habilidadDeLuchaBase = nuevaHabilidad
 	}
 	method aumentarLucha(cantidad){
 		habilidadDeLuchaBase += cantidad
