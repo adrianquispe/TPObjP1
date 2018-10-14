@@ -1,0 +1,64 @@
+import main.*
+import artefactos.*
+import global.*
+import refuerzos.*
+import hechizos.*
+
+describe "Lucha y hechiceria avanzada" {
+	
+test "Saber si Rolando esta cargado" {
+
+	assert.equals(true,rolando.estaCargado())
+}
+
+test "Sacar la armadura y preguntar si esta cargado" {
+	
+	rolando.quitarArtefacto(armadura)
+	assert.equals(false,rolando.estaCargado())
+}
+
+test "Saber habilidad de lucha de Rolando" {
+	
+	assert.equals(20,rolando.habilidadDeLucha(rolando))
+}
+
+test "Habilidad de lucha de la armadura de Rolando si tiene una bendicion de refuerzo" {
+	
+	armadura.refuerzo(bendicion)
+	assert.equals(58,armadura.luchaArtefacto(rolando))
+}
+
+test "Habilidad de lucha de la armadura de Rolando si tiene una cota de malla de refuerzo" {
+	
+	armadura.refuerzo(cotaDeMalla)
+	assert.equals(3,armadura.luchaArtefacto(rolando))
+}
+
+test "Habilidad de lucha de Rolando si tiene hechizo basico de refuerzo" {
+	
+	hechizo.hechizoRefuerzo(hechizoBasico)
+	armadura.refuerzo(hechizo)
+	assert.equals(12,armadura.luchaArtefacto(rolando))
+}
+
+test "Habilidad de lucha de Rolando si tiene hechizo espectro de refuerzo" {
+	
+	hechizo.hechizoRefuerzo(espectroMalefico)
+	armadura.refuerzo(hechizo)
+	assert.equals(19,armadura.luchaArtefacto(rolando))
+}
+
+test "Eliminar artefactos, agregar solamente el espejo y saber cual es la habilidad de lucha de Rolando" {
+	
+	rolando.quitarTodosLosArtefactos()
+	rolando.agregarArtefacto(espejo)
+	assert.equals(1,rolando.habilidadDeLucha(rolando))
+}
+
+test "Reemplazar hechizo preferido por un libro de hechizos y saber cual es el nivel de hechizeria de Rolando" {
+	
+	rolando.hechizoPreferido(libroDeHechizos)
+	assert.equals(56,rolando.nivelDeHechiceria())
+}
+
+}

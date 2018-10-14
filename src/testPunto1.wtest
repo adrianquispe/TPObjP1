@@ -1,0 +1,36 @@
+import main.*
+import hechizos.*
+import artefactos.*
+import refuerzos.*
+import global.*
+
+describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' // habilidad de lucha : 1 // sin items" {
+	var hechizoPreferido = new Logo("espectro malefico", 1)
+	var rolando = new Jugador(hechizoPreferido, 1, [])
+test "el nivel de hechiceria de rolando tiene que ser 56" {
+	assert.equals(56, rolando.nivelDeHechiceria())
+}
+test "se cambia el nombre de su hechizo preferido a 'espectro superrecontramalefico muajajaja' y tiene 125 de nivel de hechiceria" {
+	hechizoPreferido.nombre("espectro superrecontramalefico muajajaja")
+	assert.equals(125, rolando.nivelDeHechiceria())
+}
+test "se cambia su hechizo preferido al basico y su nivel de hechiceria pasa a 35" {
+	rolando.hechizoPreferido(hechizoBasico)
+	assert.equals(35, rolando.nivelDeHechiceria())
+}
+test "ocurre un eclipse y su nivel de hechiceria cambia a 61" {
+	global.eclipse()
+	assert.equals(61, rolando.nivelDeHechiceria())
+}
+test "el espectro malefico es poderoso" {
+	assert.that(hechizoPreferido.hechizoPoderoso())
+}
+test "el hechizo preferido ahora se llama pepe y no es poderoso" {
+	hechizoPreferido.nombre("pepe")
+	assert.notThat(hechizoPreferido.hechizoPoderoso())
+}
+test "el hechizo basico no es poderoso" {
+	assert.notThat(hechizoBasico.hechizoPoderoso())
+}
+
+}
