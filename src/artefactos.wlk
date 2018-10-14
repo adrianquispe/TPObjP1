@@ -67,9 +67,8 @@ object espejo{
 		}
 		else{
 			personaje.quitarArtefacto(self)
-			var puntosLuchaMejorArtefacto = personaje.mejorArtefactoLucha().luchaArtefacto(personaje)
 			personaje.agregarArtefacto(self)
-			return puntosLuchaMejorArtefacto
+			return personaje.mejorArtefactoLucha().luchaArtefacto(personaje)
 		}
 	}
 	method tieneSoloEspejo(personaje){
