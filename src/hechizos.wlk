@@ -28,7 +28,7 @@ object hechizoBasico{
 }
 
 object libroDeHechizos{
-	var hechizos = [hechizoBasico, espectroMalefico]
+	var hechizos = [hechizoBasico]
 	
 	method hechizos(){return hechizos}
 	method hechizos(listaHechizos){

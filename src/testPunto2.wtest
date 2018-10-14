@@ -1,6 +1,7 @@
 import main.*
 import artefactos.*
 import global.*
+import hechizos.*
 
 describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' // habilidad de lucha : 1 // artefactos: espada del destino, collar divino con 5 perlas, mascara oscura con indice 1 y minimo de 4" {
 	var hechizoPreferido = new Logo("espectro malefico", 1)
