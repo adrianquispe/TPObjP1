@@ -4,7 +4,7 @@ import global.*
 import refuerzos.*
 
 class Jugador{
-	var valorBase = 3
+
 	var property hechizoPreferido
 	var property habilidadDeLuchaBase
 	var artefactos
@@ -16,12 +16,11 @@ class Jugador{
 	}
 	
 	// getters
-	method valorBase(){return valorBase}
 	method artefactos(){return artefactos}
 	// fin getters
 
 	method nivelDeHechiceria (){
-		return valorBase * hechizoPreferido.poder() + global.fuerzaOscura()
+		return 3 * hechizoPreferido.poder() + global.fuerzaOscura()
 	}
 	method esPoderoso(){
 		return hechizoPreferido.hechizoPoderoso()
@@ -35,12 +34,10 @@ class Jugador{
 	method aumentarLucha(cantidad){
 		habilidadDeLuchaBase += cantidad
 	}
-	method habilidadDeLucha(personaje){
-		return artefactos.fold(self.habilidadDeLuchaBase(), {lucha, artefacto => lucha + artefacto.luchaArtefacto(personaje)})
-	}
 	method habilidadDeLucha(){
-		return self.habilidadDeLucha(self)
+		return artefactos.fold(self.habilidadDeLuchaBase(), {lucha, artefacto => lucha + artefacto.luchaArtefacto(self)})
 	}
+
 	method masLuchaQueHechizo(){
 		return self.habilidadDeLucha() > self.nivelDeHechiceria()
 	}
@@ -52,6 +49,9 @@ class Jugador{
 	}
 	method quitarTodosLosArtefactos(){
 		artefactos = []
+	}
+		method tieneSoloEspejo(){
+		return artefactos.contains(espejo) && artefactos.size() == 1
 	}
 }
 

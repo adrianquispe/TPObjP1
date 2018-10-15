@@ -4,9 +4,13 @@ object ninguno{
 	}
 }
 
-object cotaDeMalla{
+class CotaDeMalla{
+	var beneficioRefuerzo
+	constructor(beneficioEnUnidadesDeLucha){
+		beneficioRefuerzo = beneficioEnUnidadesDeLucha
+	}
 	method beneficioRefuerzo(personaje){
-		return 1
+		return beneficioRefuerzo
 	}
 }
 
@@ -22,9 +26,8 @@ object hechizo{
 	method hechizoRefuerzo(hechizoAReforzar){
 		hechizoRefuerzo = hechizoAReforzar
 	}
-	method hechizoRefuerzo(){return hechizoRefuerzo}
 	
 	method beneficioRefuerzo(personaje){
-		return self.hechizoRefuerzo().poder()
+		return hechizoRefuerzo.poder()
 	}
 }

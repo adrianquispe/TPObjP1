@@ -2,11 +2,6 @@ import global.*
 import refuerzos.*
 
 class Arma {
-	var nombre
-	
-	constructor(unNombre) {
-		nombre = unNombre
-	}
 	
 	method luchaArtefacto(personaje){
 		return 3
@@ -25,12 +20,10 @@ object collarDivino{
 }
 
 class Mascara{
-	var nombre
 	var indice
 	var property minimo = 4
 	
-	constructor(unNombre, unIndice){
-		nombre = unNombre
+	constructor(unIndice){
 		indice = unIndice
 	}
 	
@@ -60,9 +53,15 @@ object armadura{
 	}	
 }
 
+
+/*Todos los personajes pueden tener espejos, que tienen el
+ * mismo comportamiento. Es innecesario instanciar una 
+ * clase "Espejo" o "Libro de hechizos", para que hayan muchos espejos, si nada 
+ * va a ser diferente entre ellos
+ */
 object espejo{
 	method luchaArtefacto(personaje){
-		if(self.tieneSoloEspejo(personaje)){
+		if(personaje.tieneSoloEspejo()){
 			return 0
 		}
 		else{
@@ -71,7 +70,5 @@ object espejo{
 			return personaje.mejorArtefactoLucha().luchaArtefacto(personaje)
 		}
 	}
-	method tieneSoloEspejo(personaje){
-		return personaje.artefactos().contains(self) and personaje.artefactos().size() == 1
-	}
+
 }

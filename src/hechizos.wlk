@@ -36,10 +36,10 @@ object libroDeHechizos{
 	}
 	
 	method poder(){
-		return self.hechizosPoderosos(self.hechizos()).sum({hechizo => hechizo.poder()})
+		return self.hechizosPoderosos().sum({hechizo => hechizo.poder()})
 	}
-	method hechizosPoderosos(listaHechizos){
-		return listaHechizos.filter{hechizo => hechizo.hechizoPoderoso()}
+	method hechizosPoderosos(){
+		return hechizos.filter{hechizo => hechizo.hechizoPoderoso()}
 	}
 	//en caso de que sea hechizo poderoso no entra en bucle, sino que al intentar
 	//re-llamarse recibe un "libroDeHechizos" sin argumentos
