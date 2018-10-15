@@ -35,20 +35,23 @@ class Jugador{
 		habilidadDeLuchaBase += cantidad
 	}
 	method habilidadDeLucha(){
-		return artefactos.fold(self.habilidadDeLuchaBase(), {lucha, artefacto => lucha + artefacto.luchaArtefacto(self)})
+		return artefactos.fold(habilidadDeLuchaBase, {lucha, artefacto => lucha + artefacto.luchaArtefacto(self)})
 	}
 
 	method masLuchaQueHechizo(){
 		return self.habilidadDeLucha() > self.nivelDeHechiceria()
 	}
 	method mejorArtefactoLucha(){
-		return artefactos.max({artefacto => artefacto.luchaArtefacto(self)})
+		return self.artefactosSinEspejo().max({artefacto => artefacto.luchaArtefacto(self)})
 	}
 	method estaCargado(){
 		return artefactos.size() >= 5
 	}
 	method quitarTodosLosArtefactos(){
 		artefactos = []
+	}
+	method artefactosSinEspejo(){
+		return artefactos.filter({artefacto => artefacto != espejo})
 	}
 		method tieneSoloEspejo(){
 		return artefactos.contains(espejo) && artefactos.size() == 1

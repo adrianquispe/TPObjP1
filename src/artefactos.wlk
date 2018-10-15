@@ -65,10 +65,8 @@ object espejo{
 			return 0
 		}
 		else{
-			personaje.quitarArtefacto(self)
-			personaje.agregarArtefacto(self)
+
 			return personaje.mejorArtefactoLucha().luchaArtefacto(personaje)
 		}
 	}
-
 }
