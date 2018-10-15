@@ -2,6 +2,7 @@ object ninguno{
 	method beneficioRefuerzo(personaje){
 		return 0
 	}
+	method hechizoRefuerzo(){}
 }
 
 class CotaDeMalla{
@@ -12,12 +13,14 @@ class CotaDeMalla{
 	method beneficioRefuerzo(personaje){
 		return beneficioRefuerzo
 	}
+	method hechizoRefuerzo(){}
 }
 
 object bendicion{
 	method beneficioRefuerzo(personaje){
 		return personaje.nivelDeHechiceria()
 	}
+	method hechizoRefuerzo(){}
 }
 
 object hechizo{
@@ -29,5 +32,8 @@ object hechizo{
 	
 	method beneficioRefuerzo(personaje){
 		return hechizoRefuerzo.poder()
+	}
+	method hechizoRefuerzo(){
+		return hechizoRefuerzo
 	}
 }
