@@ -1,0 +1,71 @@
+import main.*
+import artefactos.*
+import global.*
+import refuerzos.*
+import hechizos.*
+import comercio.*
+
+describe "Rolando tiene espada del destino, el collar divino, la mascara oscura, una armadura sin refuerzo y un espejo como artefactos"{
+	var alacachulacachicomula = new Logo("alacachula cachicomula", 1)
+	var xenia = new Jugador(alacachulacachicomula, 1, [])
+	var thor = new Jugador(hechizoBasico,1,[])
+	var loki = new Jugador(hechizoBasico,1,[])
+	var espada = new Arma()
+	var cota = new CotaDeMalla(5)
+	var armaduraSinRefuerzo = new Armadura(2,ninguno)
+	var armaduraCota = new Armadura(2,cota)
+	var armaduraBendecida = new Armadura(2,bendicion)
+	var armaduraHechizada = new Armadura(2,hechizo)
+	fixture {
+		loki.oro(5)
+		libroDeHechizos.hechizos([alacachulacachicomula,hechizoBasico])
+		hechizo.hechizoRefuerzo(alacachulacachicomula)
+	}
+	test "Precio de lista de alacachula cachicomula"{
+		assert.equals(22, comercio.valorHechizo(alacachulacachicomula))
+	}
+	test "Xenia cambia su hechizo por un hechizo basico"{
+		comercio.venderHechizo(xenia, hechizoBasico)
+		assert.equals(100,xenia.oro())
+	}
+	test "Thor compra alacachula cachicomula"{
+		comercio.venderHechizo(thor,alacachulacachicomula)
+		assert.equals(83,thor.oro())
+	}
+	test "Thor compra 2 veces hechizo basico"{
+		comercio.venderHechizo(thor,hechizoBasico)
+		comercio.venderHechizo(thor,hechizoBasico)
+		assert.equals(90,thor.oro())
+	}
+	test "Loki intenta comprar alacachulacachicomula"{
+		comercio.venderHechizo(loki,alacachulacachicomula)
+		assert.equals(5,loki.oro())
+	}
+	test "Xenia compra una espada, un collar divino, una armadura sin refuerzo y una armadura con malla de cota "{
+		comercio.venderArma(xenia,espada)	
+		comercio.venderCollar(xenia,5)
+		comercio.venderArmadura(xenia,armaduraSinRefuerzo)
+		comercio.venderArmadura(xenia,armaduraCota)
+		assert.equals(70.5,xenia.oro())
+	}
+	test "Xenia compra 4 artefactos"{
+		comercio.venderArma(xenia,espada)	
+		comercio.venderCollar(xenia,5)
+		comercio.venderArmadura(xenia,armaduraSinRefuerzo)
+		comercio.venderArmadura(xenia,armaduraCota)
+		assert.equals(4,xenia.artefactos().size())
+	}
+	test "Thor compra una armadura con bendicion y una armadura con el hechizo alacula"{
+		comercio.venderArmadura(thor,armaduraBendecida)
+		comercio.venderArmadura(thor,armaduraHechizada)
+		assert.equals(74,thor.oro())
+	}
+	test "Loki quiere comprar el espejo"{
+		comercio.venderEspejo(loki)
+		assert.equals(5,loki.oro())
+	}
+	test "Xenia quiere comprar libro de hechizos"{
+		comercio.venderLibroHechiceria(xenia)
+		assert.equals(69,xenia.oro())
+	}
+}
