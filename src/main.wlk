@@ -8,6 +8,7 @@ class Jugador{
 	var property hechizoPreferido
 	var property habilidadDeLuchaBase
 	var artefactos
+	var oro = 100
 	
 	constructor (unHechizoPref, unaHabLuchaBase, listaArtefactos){
 		hechizoPreferido = unHechizoPref
@@ -17,6 +18,7 @@ class Jugador{
 	
 	// getters
 	method artefactos(){return artefactos}
+	method oro(){return oro}
 	// fin getters
 
 	method nivelDeHechiceria (){
@@ -55,6 +57,18 @@ class Jugador{
 	}
 		method tieneSoloEspejo(){
 		return artefactos.contains(espejo) && artefactos.size() == 1
+	}
+	method nuevoHechizoPreferido(hechizo){
+		hechizoPreferido=hechizo
+	}
+	method oro(nuevoValor){
+		oro=nuevoValor
+	}
+	method transaccion(costo){
+		oro -= costo
+	}
+	method puedoCostear(costo){
+		return oro>=costo
 	}
 }
 
