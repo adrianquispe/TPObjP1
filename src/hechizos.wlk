@@ -17,6 +17,22 @@ class Logo {
 	}
 }
 
+object hechizoComercial inherits Logo("el hechizo comercial",2)  {
+	var porcentaje = 0.2
+	
+	method porcentaje(unPorcentaje){
+		porcentaje = unPorcentaje
+	}
+	method multiplicador(unMulti) {
+		multiplicador = unMulti
+	}
+
+override method poder(){
+		return multiplicador*nombre.size()*porcentaje
+	}
+}
+
+
 object hechizoBasico{
 	
 	method poder(){

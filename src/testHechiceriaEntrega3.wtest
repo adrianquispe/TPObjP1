@@ -1,0 +1,21 @@
+import main.*
+import artefactos.*
+import global.*
+import refuerzos.*
+import hechizos.*
+import comercio.*
+
+describe "Test de hechicería de la entrega 3" {
+	var espectroMalefico = new Logo("espectro malefico", 1)
+	var furibunda = new Jugador(hechizoComercial,1,[])
+
+test "El nivel de hechicería de Furibunda es 29" {
+	assert.equals(29,furibunda.nivelDeHechiceria())
+}
+test "El hechizo comercial no es poderoso" {
+	assert.notThat(hechizoComercial.hechizoPoderoso())
+}
+test "El espectro maléfico es poderoso" {
+	assert.that(espectroMalefico.hechizoPoderoso())
+}
+}
