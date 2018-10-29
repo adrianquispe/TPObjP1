@@ -87,6 +87,9 @@ class Mascara {
 	method fecha(pos){
 		return fechaCompra.get(pos)
 	}
+	method indiceDeOscuridad(){
+		return indice
+	}
 }
 
 class Armadura {
@@ -123,6 +126,9 @@ class Armadura {
 	method peso(){
 		return peso
 	}
+	method pesoTotalArtefacto(){
+		return medidor.pesoArtefacto(self)
+	}
 	method pesoAdicional(){
 		return refuerzo.pesoAdicional()
 	}
@@ -156,10 +162,11 @@ object espejo {
 	method pesoAdicional(){
 		return 0
 	}
-	method pesoTotalArtefacto(personaje){
-		return personaje.pesoArtefacto(self)
+	method pesoTotalArtefacto(){
+		return medidor.pesoArtefacto(self)
 	}
 	method fecha(pos){
 		return fechaCompra.get(pos)
 	}
 }
+
