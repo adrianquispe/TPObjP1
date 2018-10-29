@@ -5,9 +5,9 @@ import hechizos.*
 
 describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' // habilidad de lucha : 1 // artefactos: espada del destino, collar divino con 5 perlas, mascara oscura con indice 1 y minimo de 4" {
 	var hechizoPreferido = new Logo("espectro malefico", 1)
-	var espadaDelDestino = new Arma()
-	var mascaraOscura = new Mascara(1)
-	var rolando = new Jugador(hechizoPreferido, 1, [espadaDelDestino, mascaraOscura])
+	var espadaDelDestino = new Arma(null,null)
+	var mascaraOscura = new Mascara(1,null)
+	var rolando = new Jugador(hechizoPreferido, 1, [espadaDelDestino, mascaraOscura],null)
 	test "Se le quitan todos los artefactos, y su habilidad de lucha queda en 1" {
 		rolando.quitarTodosLosArtefactos()
 		assert.equals(1, rolando.habilidadDeLucha())
@@ -37,11 +37,11 @@ describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' //
 	}
 
 	test "adicional 1: rolando toma una 'mascara oscura' con indice cero, y tiene una hab de lucha de 4"{
-		var mascaraNadaOscura = new Mascara(0)
+		var mascaraNadaOscura = new Mascara(0,null)
 		assert.equals(4, mascaraNadaOscura.luchaArtefacto(rolando))
 	}
 	test "adicional 2: similar al 'adicional 1' pero con un minimo (de mascara) de 2 y hab de lucha de la mascara de 2"{
-		var mascaraNadaOscura = new Mascara(0)
+		var mascaraNadaOscura = new Mascara(0,null)
 		mascaraNadaOscura.minimo(2)
 		assert.equals(2, mascaraNadaOscura.luchaArtefacto(rolando))
 	}

@@ -7,7 +7,7 @@ import comercio.*
 
 describe "Test de hechicería de la entrega 3" {
 	var espectroMalefico = new Logo("espectro malefico", 1)
-	var furibunda = new Jugador(hechizoComercial,1,[])
+	var furibunda = new Jugador(hechizoComercial,1,[],null)
 
 test "El nivel de hechicería de Furibunda es 29" {
 	assert.equals(29,furibunda.nivelDeHechiceria())

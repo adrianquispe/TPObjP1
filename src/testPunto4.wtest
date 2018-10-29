@@ -7,15 +7,15 @@ import comercio.*
 
 describe "Rolando tiene espada del destino, el collar divino, la mascara oscura, una armadura sin refuerzo y un espejo como artefactos"{
 	var alacachulacachicomula = new Logo("alacachula cachicomula", 1)
-	var xenia = new Jugador(alacachulacachicomula, 1, [])
-	var thor = new Jugador(hechizoBasico,1,[])
-	var loki = new Jugador(hechizoBasico,1,[])
-	var espada = new Arma()
+	var xenia = new Jugador(alacachulacachicomula, 1, [],0)
+	var thor = new Jugador(hechizoBasico,1,[],0)
+	var loki = new Jugador(hechizoBasico,1,[],0)
+	var espada = new Arma(null,null)
 	var cota = new CotaDeMalla(5)
-	var armaduraSinRefuerzo = new Armadura(2,ninguno)
-	var armaduraCota = new Armadura(2,cota)
-	var armaduraBendecida = new Armadura(2,bendicion)
-	var armaduraHechizada = new Armadura(2,hechizo)
+	var armaduraSinRefuerzo = new Armadura(2,ninguno,null)
+	var armaduraCota = new Armadura(2,cota,null)
+	var armaduraBendecida = new Armadura(2,bendicion,null)
+	var armaduraHechizada = new Armadura(2,hechizo,null)
 	fixture {
 		loki.oro(5)
 		libroDeHechizos.hechizos([alacachulacachicomula,hechizoBasico])
