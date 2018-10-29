@@ -3,6 +3,7 @@ object ninguno{
 		return 0
 	}
 	method hechizoRefuerzo(){}
+	method pesoAdicional(){return 0}
 }
 
 class CotaDeMalla{
@@ -14,6 +15,7 @@ class CotaDeMalla{
 		return beneficioRefuerzo
 	}
 	method hechizoRefuerzo(){}
+	method pesoAdicional(){return 1}
 }
 
 object bendicion{
@@ -21,6 +23,7 @@ object bendicion{
 		return personaje.nivelDeHechiceria()
 	}
 	method hechizoRefuerzo(){}
+	method pesoAdicional(){return 0}
 }
 
 object hechizo{
@@ -35,5 +38,10 @@ object hechizo{
 	}
 	method hechizoRefuerzo(){
 		return hechizoRefuerzo
+	}
+	method pesoAdicional(){
+		if(hechizoRefuerzo.poder().even()){
+			return 2
+		} else {return 1}
 	}
 }
