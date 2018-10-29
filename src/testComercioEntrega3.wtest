@@ -1,0 +1,48 @@
+import main.*
+import artefactos.*
+import global.*
+import refuerzos.*
+import hechizos.*
+import comercio.*
+
+describe "Test de comercio tercera entrega"{
+	var pastoriza = new Comerciante(independiente,9)
+	var prieto = new Comerciante(registrado,null)
+	var fermepin = new Comerciante(impuestoALaGanancia,null)
+	var ursula = new Jugador(null, null, [], 50)
+	var mascaraOscura = new Mascara(1,5)
+	
+	test "Ursula compra la mascara oscura a Pastoriza"{
+		pastoriza.venderMascara(ursula,mascaraOscura)
+		assert.equals(89.1,ursula.oro())
+	}
+	test "Ursula compra la mascara oscura a Prieto"{
+		prieto.venderMascara(ursula,mascaraOscura)
+		assert.equals(87.9,ursula.oro())
+	}
+	test "Ursula compra la mascara oscura a fermepin"{
+		fermepin.venderMascara(ursula,mascaraOscura)
+		assert.equals(88.25,ursula.oro())
+	}
+	test "Recategorizar a pastoriza y vender la mascara a ursula"{
+		pastoriza.situacionImpositiva()
+		pastoriza.venderMascara(ursula,mascaraOscura)
+		assert.equals(88.2,ursula.oro())
+	}
+	test "Recategorizar dos veces a pastoriza y vender la mascara a ursula"{
+		pastoriza.situacionImpositiva()
+		pastoriza.situacionImpositiva()
+		pastoriza.venderMascara(ursula,mascaraOscura)
+		assert.equals(87.9,ursula.oro())
+	}
+	test "Recategorizar a prieto y vender la mascara a ursula"{
+		prieto.situacionImpositiva()
+		prieto.venderMascara(ursula,mascaraOscura)
+		assert.equals(88.25,ursula.oro())
+	}
+	test "Recategorizar a fermepin y vender la mascara a ursula"{
+		fermepin.situacionImpositiva()
+		fermepin.venderMascara(ursula,mascaraOscura)
+		assert.equals(88.25,ursula.oro())
+	}
+}
