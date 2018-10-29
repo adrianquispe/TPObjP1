@@ -6,11 +6,11 @@ import hechizos.*
 
 describe "test del punto 3: Lucha y hechicería más avanzada aún" {
 
-	var espadaDelDestino = new Arma(null,null)
-	var mascaraOscura = new Mascara(1,null)
+	var espadaDelDestino = new Arma(7,fechaActual.fecha())
+	var mascaraOscura = new Mascara(1,5)
 	var espectroMalefico = new Logo("espectro malefico", 1)
-	var armadura = new Armadura(2, ninguno,null)
-	var rolando = new Jugador(espectroMalefico, 1, [ espadaDelDestino, collarDivino, mascaraOscura, armadura, espejo ],null)
+	var armadura = new Armadura(2, ninguno,5)
+	var rolando = new Jugador(espectroMalefico, 1, [ espadaDelDestino, collarDivino, mascaraOscura, armadura, espejo ],50)
 	var cotaDeMalla = new CotaDeMalla(1)
 	
 
