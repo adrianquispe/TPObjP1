@@ -6,7 +6,7 @@ import global.*
 
 describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' // habilidad de lucha : 1 // sin items" {
 	var hechizoPreferido = new Logo("espectro malefico", 1)
-	var rolando = new Jugador(hechizoPreferido, 1, [],null)
+	var rolando = new Jugador(hechizoPreferido, 1, [],50)
 test "el nivel de hechiceria de rolando tiene que ser 56" {
 	assert.equals(56, rolando.nivelDeHechiceria())
 }
