@@ -1,0 +1,29 @@
+import main.*
+import artefactos.*
+import global.*
+import refuerzos.*
+import hechizos.*
+import comercio.*
+
+describe "Test de personajes no controlados" {
+
+	// (unHechizoPref, unaHabLuchaBase, listaArtefactos, capacidadEnPeso, unNivel)
+	var mascaraClara = new Mascara(0)
+	var navi = new NPC(null, 1, [], null, facil)
+	var ashleyGraham = new NPC(null, 5, [ mascaraClara ], null, moderado)
+
+	test "La habilidad para la lucha de navi es 1" {
+		assert.equals(1, navi.habilidadDeLucha())
+	}
+
+	test "La habilidad para la lucha de Ashley Graham es 18" {
+		assert.equals(18, ashleyGraham.habilidadDeLucha())
+	}
+
+	test "Si la dificultad de Ashley Graham es 'dificil', su habilidad para la lucha es 36" {
+		ashleyGraham.nivel(dificil)
+		assert.equals(36, ashleyGraham.habilidadDeLucha())
+	}
+
+}
+
