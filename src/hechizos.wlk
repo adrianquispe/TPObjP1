@@ -1,19 +1,29 @@
 import global.*
+import main.*
 
 class Logo {
 	var property nombre
 	var multiplicador
+	var fechaCompra=fechaActual.fecha()
 	
 	constructor (unNombre, unMulti){
 		nombre = unNombre
 		multiplicador = unMulti
 	}
-	
+	method fecha(pos){
+		return fechaCompra.get(pos)
+	}
 	method poder(){
 		return nombre.size() * multiplicador
 	}
 	method hechizoPoderoso(){
 		return self.poder() > 15
+	}
+	method peso(){
+		return 0
+	}
+	method pesoAdicional(){
+		return 0
 	}
 }
 
@@ -34,18 +44,27 @@ override method poder(){
 
 
 object hechizoBasico{
-	
+	var fechaCompra=fechaActual.fecha()
 	method poder(){
 		return 10
 	}
 	method hechizoPoderoso(){
 		return false
 	}
+	method peso(){
+		return 0
+	}
+	method fecha(pos){
+		return fechaCompra.get(pos)
+	}
+	method pesoAdicional(){
+		return 0
+	}
 }
 
 object libroDeHechizos{
 	var hechizos = [hechizoBasico]
-	
+	var fechaCompra=fechaActual.fecha()
 	method hechizos(){return hechizos}
 	method hechizos(listaHechizos){
 		hechizos = listaHechizos
@@ -61,5 +80,14 @@ object libroDeHechizos{
 	//re-llamarse recibe un "libroDeHechizos" sin argumentos
 	method hechizoPoderoso(){
 		return false
+	}
+	method peso(){
+		return 0
+	}
+	method fecha(pos){
+		return fechaCompra.get(pos)
+	}
+	method pesoAdicional(){
+		return 0
 	}
 }
