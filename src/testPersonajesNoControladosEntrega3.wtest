@@ -8,7 +8,7 @@ import comercio.*
 describe "Test de personajes no controlados" {
 
 	// (unHechizoPref, unaHabLuchaBase, listaArtefactos, capacidadEnPeso, unNivel)
-	var mascaraClara = new Mascara(0,null)
+	var mascaraClara = new Mascara(0,0)
 	var navi = new NPC(null, 1, [], null, facil)
 	var ashleyGraham = new NPC(null, 5, [ mascaraClara ], null, moderado)
 

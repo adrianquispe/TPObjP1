@@ -4,10 +4,13 @@ import global.*
 import hechizos.*
 
 describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' // habilidad de lucha : 1 // artefactos: espada del destino, collar divino con 5 perlas, mascara oscura con indice 1 y minimo de 4" {
+	
+	const hoy = new Date()
 	var hechizoPreferido = new Logo("espectro malefico", 1)
-	var espadaDelDestino = new Arma(7,fechaActual.fecha())
-	var mascaraOscura = new Mascara(1,5)
+	var espadaDelDestino = new Arma(7,hoy)
+	var mascaraOscura = new Mascara(5,1)
 	var rolando = new Jugador(hechizoPreferido, 1, [espadaDelDestino, mascaraOscura],50)
+	
 	test "Se le quitan todos los artefactos, y su habilidad de lucha queda en 1" {
 		rolando.quitarTodosLosArtefactos()
 		assert.equals(1, rolando.habilidadDeLucha())
@@ -16,6 +19,7 @@ describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' //
 		rolando.agregarArtefacto(collarDivino)
 		assert.equals(13, rolando.habilidadDeLucha())
 	}
+
 	test "se le agrega el collar divino, se cambia las perlas a solo 3, y tiene 11 de hab de lucha"{
 		collarDivino.modificarPerlas(3)
 		rolando.agregarArtefacto(collarDivino)
@@ -37,11 +41,11 @@ describe "sujeto de prueba: rolando // hechizo preferido: 'espectro malefico' //
 	}
 
 	test "adicional 1: rolando toma una 'mascara oscura' con indice cero, y tiene una hab de lucha de 4"{
-		var mascaraNadaOscura = new Mascara(0,5)
+		var mascaraNadaOscura = new Mascara(5,0)
 		assert.equals(4, mascaraNadaOscura.luchaArtefacto(rolando))
 	}
 	test "adicional 2: similar al 'adicional 1' pero con un minimo (de mascara) de 2 y hab de lucha de la mascara de 2"{
-		var mascaraNadaOscura = new Mascara(0,5)
+		var mascaraNadaOscura = new Mascara(5,0)
 		mascaraNadaOscura.minimo(2)
 		assert.equals(2, mascaraNadaOscura.luchaArtefacto(rolando))
 	}

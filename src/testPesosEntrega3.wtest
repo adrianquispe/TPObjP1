@@ -5,70 +5,89 @@ import refuerzos.*
 import comercio.*
 import global.*
 
-describe "Test de pesos de artefactos entrega 3"{
-	var espadaVieja = new Arma(7,[7,5,2006])
-	var espadaNueva = new Arma(4,fechaActual.fecha())
-	var espadaComun = new Arma(5,[])
-	var mascaraOscura = new Mascara(1,3)
-	var mascaraClara = new Mascara(0,2)
-	var cota = new CotaDeMalla(2)
-	var armaduraConCotaDeMalla = new Armadura(2,cota,10)
-	var armaduraReforzadaHechizoPar = new Armadura(2,hechizo,12)
-	var armaduraReforzadaHechizoImpar = new Armadura(2,hechizo,12)
-	var hechizoMalefico = new Logo("hechizomalefico",1)
-	var armaduraSinRefuerzo = new Armadura(2,ninguno,12)
-	var merlin = new Jugador(hechizoBasico, 3, [], 10)
-	var ursula = new Jugador(hechizoBasico, 3, [mascaraOscura, armaduraConCotaDeMalla], 200)
-	var mockHnos = new Comerciante(independiente,0)
+describe "Test de pesos de artefactos entrega 3" {
 
-test "Saber el peso de la espada Vieja" {
-	assert.equals(6,medidor.pesoArtefacto(espadaVieja))
-}
-test "Saber el peso de la espada nueva"{
-	assert.equals(4,medidor.pesoArtefacto(espadaNueva))
-}
-test "Saber el peso de la espada comun"{
-	assert.equals(4.5,medidor.pesoArtefacto(espadaComun,50))
-}
-test "Saber el peso del collar divino"{
-	assert.equals(2.5,medidor.pesoArtefacto(collarDivino))
-}
-test "Saber el peso de la mascara oscura"{
-	assert.equals(3,medidor.pesoArtefacto(mascaraOscura))
-}
-test "Hacer que ocurra un eclipse y saber peso de la mascara oscura"{
-	global.eclipse()
-	assert.equals(5,medidor.pesoArtefacto(mascaraOscura))
-}
-test "Saber el peso de la mascara clara"{
-	assert.equals(2,medidor.pesoArtefacto(mascaraClara))
-}
-test "Saber el peso de la armadura con cota de malla"{
-	assert.equals(11,medidor.pesoArtefacto(armaduraConCotaDeMalla))
-}
-test "Saber el peso de la armadura con hechizo par"{
-	hechizo.hechizoRefuerzo(hechizoComercial)
-	assert.equals(14,medidor.pesoArtefacto(armaduraReforzadaHechizoPar))
-}
-test "Saber el peso de la armadura con hechizo impar"{
-	hechizo.hechizoRefuerzo(hechizoMalefico)
-	assert.equals(13,medidor.pesoArtefacto(armaduraReforzadaHechizoImpar))
-}
-test "Saber peso total de la armadura sin refuerzo"{
-	assert.equals(12,medidor.pesoArtefacto(armaduraSinRefuerzo))
-}
-test "Merlin le compra a Mock Hnos la mascara clara y la oscura"{
-	mockHnos.venderMascara(merlin,mascaraOscura)
-	mockHnos.venderMascara(merlin,mascaraClara)
-	assert.equals(5,merlin.pesoTotalEquipado())
+	const hoy = new Date()
+	var espadaVieja = new Arma(7, new Date(7, 5, 2006))
+	var espadaNueva = new Arma(4, hoy)
+	var espadaComun = new Arma(5, hoy.minusDays(50))
+	var mascaraOscura = new Mascara(3, 1)
+	var mascaraClara = new Mascara(2, 0)
+	var cota = new CotaDeMalla(2)
+	var armaduraConCotaDeMalla = new Armadura(10, 2, cota)
+	var armaduraReforzadaHechizoPar = new Armadura(12, 2, hechizo)
+	var armaduraReforzadaHechizoImpar = new Armadura(12, 2, hechizo)
+	var hechizoMalefico = new Logo("espectro maléfico", 1)
+	var armaduraSinRefuerzo = new Armadura(12, 2, ninguno)
+	var merlin = new Jugador(hechizoBasico, 3, [], 10)
+	var ursula = new Jugador(hechizoBasico, 3, [ mascaraOscura, armaduraConCotaDeMalla ], 200)
+	var mockHnos = new Comerciante(independiente, 0)
+
+	test "Saber el peso de la espada Vieja" {
+		assert.equals(6, espadaVieja.pesoTotalArtefacto())
 	}
-test "Merlin le quiere comprar la armadura con hechizo par"{
-	hechizo.hechizoRefuerzo(hechizoComercial)
-	mockHnos.venderArmadura(merlin,armaduraReforzadaHechizoPar)
-	assert.that(!merlin.artefactos().contains(armaduraReforzadaHechizoPar))
+
+	test "Saber el peso de la espada nueva" {
+		assert.equals(4, espadaNueva.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la espada comun" {
+		assert.equals(4.95, espadaComun.pesoTotalArtefacto())
+//El enunciado dice que debe dar 4.5, pero la corrección 
+//está mal calculada: divide por 100 los días, no por 1000
+	}
+
+	test "Saber el peso del collar divino" {
+		assert.equals(2.5, collarDivino.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la mascara oscura" {
+		assert.equals(3, mascaraOscura.pesoTotalArtefacto())
+	}
+
+	test "Hacer que ocurra un eclipse y saber peso de la mascara oscura" {
+		global.eclipse()
+		assert.equals(5, mascaraOscura.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la mascara clara" {
+		assert.equals(2, mascaraClara.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la armadura con cota de malla" {
+		assert.equals(11, armaduraConCotaDeMalla.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la armadura con hechizo par" {
+		hechizo.hechizoRefuerzo(hechizoComercial)
+		assert.equals(14, armaduraReforzadaHechizoPar.pesoTotalArtefacto())
+	}
+
+	test "Saber el peso de la armadura con hechizo impar" {
+		hechizo.hechizoRefuerzo(hechizoMalefico)
+		assert.equals(13, armaduraReforzadaHechizoImpar.pesoTotalArtefacto())
+	}
+
+	test "Saber peso total de la armadura sin refuerzo" {
+		assert.equals(12, armaduraSinRefuerzo.pesoTotalArtefacto())
+	}
+
+	test "Merlin le compra a Mock Hnos la mascara clara y la oscura" {
+		merlin.comprarArtefacto(mascaraOscura, mockHnos)
+		merlin.comprarArtefacto(mascaraClara, mockHnos)
+		assert.equals(5, merlin.pesoTotalEquipado())
+	}
+
+	test "Merlin le quiere comprar la armadura con hechizo par" {
+		hechizo.hechizoRefuerzo(hechizoComercial)
+		merlin.comprarArtefacto(armaduraReforzadaHechizoPar, mockHnos)
+		assert.that(!merlin.artefactos().contains(armaduraReforzadaHechizoPar))
+	}
+
+	test "Ursula se desprende de la armadura con cota de malla" {
+		ursula.quitarArtefacto(armaduraConCotaDeMalla)
+		assert.equals(3, ursula.pesoTotalEquipado())
+	}
+
 }
-test "Ursula se desprende de la armadura con cota de malla"{
-	ursula.quitarArtefacto(armaduraConCotaDeMalla)
-	assert.equals(3,ursula.pesoTotalEquipado())
-}
-}
+
