@@ -1,47 +1,75 @@
-object ninguno{
-	method beneficioRefuerzo(personaje){
+import artefactos.*
+
+object ninguno inherits ArticuloParaLaVenta {
+	override method precio() {
+		return 2
+	}
+
+	method beneficioRefuerzo(personaje) {
 		return 0
 	}
-	method hechizoRefuerzo(){}
-	method pesoAdicional(){return 0}
+
+	method pesoAdicionalRefuerzo() {
+		return 0
+	}
+
 }
 
-class CotaDeMalla{
+class CotaDeMalla inherits ArticuloParaLaVenta {
+
 	var beneficioRefuerzo
-	constructor(beneficioEnUnidadesDeLucha){
+
+	constructor(beneficioEnUnidadesDeLucha) {
 		beneficioRefuerzo = beneficioEnUnidadesDeLucha
 	}
-	method beneficioRefuerzo(personaje){
+	
+	method pesoRefuerzo() {
+		return 1
+	}
+
+	method beneficioRefuerzo(personaje) {
 		return beneficioRefuerzo
 	}
-	method hechizoRefuerzo(){}
-	method pesoAdicional(){return 1}
+
+	method pesoAdicionalRefuerzo() {
+		return 1
+	}
+	
+	override method precio() {
+		return beneficioRefuerzo / 2
+	}
 }
 
-object bendicion{
-	method beneficioRefuerzo(personaje){
+object bendicion inherits ArticuloParaLaVenta {
+
+	method beneficioRefuerzo(personaje) {
 		return personaje.nivelDeHechiceria()
 	}
-	method hechizoRefuerzo(){}
-	method pesoAdicional(){return 0}
+
+
+	method pesoAdicionalRefuerzo() {
+		return 0
+	}
+
 }
 
-object hechizo{
-	var hechizoRefuerzo
-	
-	method hechizoRefuerzo(hechizoAReforzar){
-		hechizoRefuerzo = hechizoAReforzar
-	}
-	
-	method beneficioRefuerzo(personaje){
+object hechizo inherits ArticuloParaLaVenta {
+
+	var property hechizoRefuerzo = null
+
+	method beneficioRefuerzo(personaje) {
 		return hechizoRefuerzo.poder()
 	}
-	method hechizoRefuerzo(){
-		return hechizoRefuerzo
-	}
-	method pesoAdicional(){
-		if(hechizoRefuerzo.poder().even()){
+	
+	method pesoAdicionalRefuerzo() {
+		if (hechizoRefuerzo.poder().even()) 
 			return 2
-		} else {return 1}
+		else return 1
 	}
+	
+	override method precio() {
+		return hechizoRefuerzo.precio()
+	}
+
 }
+

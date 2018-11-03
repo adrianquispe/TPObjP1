@@ -36,14 +36,6 @@ class Jugador {
 		return hechizoPreferido.hechizoPoderoso()
 	}
 
-	method agregarArtefacto(nuevoArtefacto) {
-		if (self.pesoTotalEquipado() + medidor.pesoArtefacto(nuevoArtefacto) > capacidadPeso) {
-			throw new Exception("Es imposible equiparse ese artefacto")
-		} else {
-			artefactos.add(nuevoArtefacto)
-		}
-	}
-
 	method quitarArtefacto(artefactoAQuitar) {
 		artefactos.remove(artefactoAQuitar)
 	}
@@ -80,57 +72,50 @@ class Jugador {
 		return artefactos.contains(espejo) && artefactos.size() == 1
 	}
 
-	method nuevoHechizoPreferido(hechizo) {
-		hechizoPreferido = hechizo
-	}
-
 	method oro(nuevoValor) {
 		oro = nuevoValor
 	}
-
-	method transaccion(costo) {
-		oro -= costo
+	
+	
+	method comprarHechizo (hechizo, vendedor) {
+		self.pagar( 0.max( hechizo.precioDeVentaSegunComerciante(vendedor) - hechizoPreferido.precio()/2 ) )
+		hechizoPreferido = hechizo
+	}
+	
+	method comprarArtefacto(nuevoArtefacto, vendedor) {
+		if ( self.puedeSoportarElPeso(nuevoArtefacto) ) {
+			self.pagar(nuevoArtefacto.precioDeVentaSegunComerciante(vendedor))
+			nuevoArtefacto.fechaDeCompra(new Date())
+			artefactos.add(nuevoArtefacto)
+		}
 	}
 
-	method puedoCostear(costo) {
+	method pagar(costo) {
+		if (self.puedeCostear(costo))
+		oro -= costo
+		else self.error("No hay oro suficiente para pagar")
+	}
+
+	method puedeCostear(costo) {
 		return oro >= costo
 	}
+	
+	method puedeSoportarElPeso(nuevoArtefacto) {
+		return self.pesoTotalEquipado() + nuevoArtefacto.pesoTotalArtefacto() < capacidadPeso
+	}
+	
+	method agregarArtefacto(nuevoArtefacto) {
+		if ( !self.puedeSoportarElPeso(nuevoArtefacto) )
+			throw new Exception("Es imposible equipar este artefacto")
+		else artefactos.add(nuevoArtefacto)
+}
 
 	method pesoTotalEquipado() {
-		return artefactos.map({ pesos => pesos.pesoTotalArtefacto() }).sum()
+		return artefactos.sum({ artefacto => artefacto.pesoTotalArtefacto() })
 	}
 
 }
 
-object medidor {
-
-	method diasCompraArtefacto(artefacto) {
-		return ((fechaActual.fecha(2) - artefacto.fecha(2)) * 365) + ((fechaActual.fecha(1) - artefacto.fecha(1)) * 30) + (fechaActual.fecha(0) - artefacto.fecha(0))
-	}
-
-	method pesoArtefacto(artefacto) {
-		return artefacto.peso() - 1.min(self.diasCompraArtefacto(artefacto) / 1000) + artefacto.pesoAdicional()
-	}
-
-	method pesoArtefacto(artefacto, cantDias) {
-		return artefacto.peso() - 1.min(cantDias / 100) + artefacto.pesoAdicional()
-	}
-
-}
-
-object fechaActual {
-
-	var fecha = [ 28, 10, 2018 ]
-
-	method fecha(pos) {
-		return fecha.get(pos)
-	}
-
-	method fecha() {
-		return fecha
-	}
-
-}
 
 class NPC inherits Jugador {
 

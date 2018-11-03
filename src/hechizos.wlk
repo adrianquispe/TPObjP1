@@ -1,93 +1,98 @@
 import global.*
 import main.*
+import artefactos.*
 
-class Logo {
+class Logo inherits ArticuloParaLaVenta { //ArticuloParaLaVenta está en artefactos
+
 	var property nombre
 	var multiplicador
-	var fechaCompra=fechaActual.fecha()
-	
-	constructor (unNombre, unMulti){
+
+	constructor(unNombre, unMulti) {
 		nombre = unNombre
 		multiplicador = unMulti
 	}
-	method fecha(pos){
-		return fechaCompra.get(pos)
-	}
-	method poder(){
+
+	method poder() {
 		return nombre.size() * multiplicador
 	}
-	method hechizoPoderoso(){
+
+	method hechizoPoderoso() {
 		return self.poder() > 15
 	}
-	method peso(){
-		return 0
+
+	override method precio() {
+		return self.poder()
 	}
-	method pesoAdicional(){
-		return 0
-	}
+
 }
 
-object hechizoComercial inherits Logo("el hechizo comercial",2)  {
+object hechizoComercial inherits Logo("el hechizo comercial", 2) {
+
 	var porcentaje = 0.2
-	
-	method porcentaje(unPorcentaje){
+
+	method porcentaje(unPorcentaje) {
 		porcentaje = unPorcentaje
 	}
+
 	method multiplicador(unMulti) {
 		multiplicador = unMulti
 	}
 
-override method poder(){
-		return multiplicador*nombre.size()*porcentaje
+	override method poder() {
+		return multiplicador * nombre.size() * porcentaje
 	}
+
 }
 
+object hechizoBasico inherits ArticuloParaLaVenta {
 
-object hechizoBasico{
-	var fechaCompra=fechaActual.fecha()
-	method poder(){
+	method poder() {
 		return 10
 	}
-	method hechizoPoderoso(){
+
+	method hechizoPoderoso() {
 		return false
 	}
-	method peso(){
-		return 0
-	}
-	method fecha(pos){
-		return fechaCompra.get(pos)
-	}
-	method pesoAdicional(){
-		return 0
+
+	override method precio() {
+		return self.poder()
 	}
 }
 
-object libroDeHechizos{
-	var hechizos = [hechizoBasico]
-	var fechaCompra=fechaActual.fecha()
-	method hechizos(){return hechizos}
-	method hechizos(listaHechizos){
+object libroDeHechizos inherits ArticuloParaLaVenta {
+
+	var hechizos = [ hechizoBasico ]
+	var property fechaDeCompra = null
+
+	method hechizos() {
+		return hechizos
+	}
+
+	method hechizos(listaHechizos) {
 		hechizos = listaHechizos
 	}
-	
-	method poder(){
-		return self.hechizosPoderosos().sum({hechizo => hechizo.poder()})
+
+	method poder() {
+		return self.hechizosPoderosos().sum({ hechizo => hechizo.poder() })
 	}
-	method hechizosPoderosos(){
-		return hechizos.filter{hechizo => hechizo.hechizoPoderoso()}
+
+	method hechizosPoderosos() {
+		return hechizos.filter{ hechizo => hechizo.hechizoPoderoso() }
 	}
-	//en caso de que sea hechizo poderoso no entra en bucle, sino que al intentar
-	//re-llamarse recibe un "libroDeHechizos" sin argumentos
-	method hechizoPoderoso(){
+
+	// en caso de que sea hechizo poderoso no entra en bucle, sino que al intentar
+	// re-llamarse recibe un "libroDeHechizos" sin argumentos
+	method hechizoPoderoso() {
 		return false
 	}
-	method peso(){
+
+	method pesoTotalArtefacto() {
 		return 0
 	}
-	method fecha(pos){
-		return fechaCompra.get(pos)
+	
+	override method precio() {
+		return 10 * hechizos.size() + self.poder() //El poder es la suma del poder de los hechizos poderosos
 	}
-	method pesoAdicional(){
-		return 0
-	}
+
 }
+
