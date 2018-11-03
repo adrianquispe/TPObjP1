@@ -47,8 +47,7 @@ describe "Rolando tiene espada del destino, el collar divino, la mascara oscura,
 	}
 
 	test "Loki intenta comprar alacachulacachicomula" {
-		loki.comprarHechizo(alacachulacachicomula, mockHnos)
-		assert.equals(5, loki.oro())
+		assert.throwsExceptionWithMessage("No hay oro suficiente para pagar", { => loki.comprarHechizo(alacachulacachicomula, mockHnos)})
 	}
 
 	test "Xenia compra una espada, un collar divino, una armadura sin refuerzo y una armadura con malla de cota " {
@@ -75,8 +74,7 @@ describe "Rolando tiene espada del destino, el collar divino, la mascara oscura,
 	}
 
 	test "Loki quiere comprar el espejo" {
-		loki.comprarArtefacto(espejo, mockHnos)
-		assert.equals(5, loki.oro())
+		assert.throwsExceptionWithMessage("No hay oro suficiente para pagar", { => loki.comprarArtefacto(espejo, mockHnos)})
 	}
 
 	test "Xenia quiere comprar libro de hechizos" {
