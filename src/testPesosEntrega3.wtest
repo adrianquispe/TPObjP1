@@ -80,8 +80,7 @@ describe "Test de pesos de artefactos entrega 3" {
 
 	test "Merlin le quiere comprar la armadura con hechizo par" {
 		hechizo.hechizoRefuerzo(hechizoComercial)
-		merlin.comprarArtefacto(armaduraReforzadaHechizoPar, mockHnos)
-		assert.that(!merlin.artefactos().contains(armaduraReforzadaHechizoPar))
+		assert.throwsExceptionWithMessage("Es imposible equipar este artefacto", { => merlin.comprarArtefacto(armaduraReforzadaHechizoPar, mockHnos)})
 	}
 
 	test "Ursula se desprende de la armadura con cota de malla" {

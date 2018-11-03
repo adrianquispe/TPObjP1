@@ -88,6 +88,7 @@ class Jugador {
 			nuevoArtefacto.fechaDeCompra(new Date())
 			artefactos.add(nuevoArtefacto)
 		}
+		else throw new Exception("Es imposible equipar este artefacto")
 	}
 
 	method pagar(costo) {
@@ -105,9 +106,7 @@ class Jugador {
 	}
 	
 	method agregarArtefacto(nuevoArtefacto) {
-		if ( !self.puedeSoportarElPeso(nuevoArtefacto) )
-			throw new Exception("Es imposible equipar este artefacto")
-		else artefactos.add(nuevoArtefacto)
+		artefactos.add(nuevoArtefacto)
 }
 
 	method pesoTotalEquipado() {
